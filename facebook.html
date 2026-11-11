@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FB ID Creator Pro - Ultimate Facebook Automation Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-light: #818CF8;
+            --primary-dark: #3730A3;
+            --accent: #06B6D4;
+            --accent-light: #22D3EE;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --bg-dark: #0B0F1A;
+            --bg-card: #111827;
+            --bg-card-hover: #1F2937;
+            --bg-glass: rgba(17, 24, 39, 0.7);
+            --text-primary: #F9FAFB;
+            --text-secondary: #9CA3AF;
+            --text-muted: #6B7280;
+            --border: rgba(75, 85, 99, 0.4);
+            --glow-primary: 0 0 40px rgba(79, 70, 229, 0.3);
+            --glow-accent: 0 0 40px rgba(6, 182, 212, 0.3);
+            --gradient-primary: linear-gradient(135deg, #4F46E5, #06B6D4);
+            --gradient-dark: linear-gradient(180deg, #0B0F1A 0%, #1a1a2e 50%, #0B0F1A 100%);
+            --gradient-card: linear-gradient(145deg, rgba(31, 41, 55, 0.5), rgba(17, 24, 39, 0.8));
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--bg-dark);
+        }
+
+        html::-webkit-scrollbar { width: 8px; }
+        html::-webkit-scrollbar-track { background: var(--bg-dark); }
+        html::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bg-animation .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-animation .orb:nth-child(1) {
+            width: 600px;
+            height: 600px;
+            background: var(--primary);
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .bg-animation .orb:nth-child(2) {
+            width: 500px;
+            height: 500px;
+            background: var(--accent);
+            top: 50%;
+            right: -150px;
+            animation-delay: -5s;
+        }
+
+        .bg-animation .orb:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            background: #8B5CF6;
+            bottom: -100px;
+            left: 30%;
+            animation-delay: -10s;
+        }
+
+        .bg-animation .orb:nth-child(4) {
+            width: 300px;
+            height: 300px;
+            background: var(--success);
+            top: 30%;
+            left: 50%;
+            animation-delay: -15s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -80px) scale(1.1); }
+            50% { transform: translate(-30px, 50px) scale(0.9); }
+            75% { transform: translate(80px, 30px) scale(1.05); }
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(79, 70, 229, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79, 70, 229, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+            background: rgba(11, 15, 26, 0.8);
+            border-bottom: 1px solid transparent;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            border-bottom-color: var(--border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            box-shadow: var(--glow-primary);
+        }
+
+        .nav-logo-text {
+            font-size: 22px;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-logo-text span {
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+            background: rgba(79, 70, 229, 0.1);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-light);
+            background: rgba(79, 70, 229, 0.15);
+        }
+
+        .nav-cta {
+            padding: 10px 24px !important;
+            background: var(--gradient-primary) !important;
+            color: white !important;
+            border-radius: 10px !important;
+            font-weight: 600 !important;
+            box-shadow: var(--glow-primary);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 60px rgba(79, 70, 229, 0.5) !important;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 30px 80px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(79, 70, 229, 0.15);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero-title {
+            font-size: clamp(40px, 7vw, 76px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease 0.1s both;
+        }
+
+        .hero-title .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--glow-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 80px rgba(79, 70, 229, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background: rgba(79, 70, 229, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.3);
+            font-size: 18px;
+            padding: 18px 40px;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 80px rgba(16, 185, 129, 0.5);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-visual {
+            margin-top: 70px;
+            position: relative;
+            animation: fadeInUp 0.8s ease 0.5s both;
+        }
+
+        .hero-mockup {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5), var(--glow-primary);
+        }
+
+        .mockup-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mockup-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .mockup-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .mockup-dot:nth-child(1) { background: #EF4444; }
+        .mockup-dot:nth-child(2) { background: #F59E0B; }
+        .mockup-dot:nth-child(3) { background: #10B981; }
+
+        .mockup-url {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .mockup-body {
+            padding: 30px;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mockup-line {
+            height: 14px;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 7px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .mockup-line:nth-child(1) { width: 85%; }
+        .mockup-line:nth-child(2) { width: 70%; }
+        .mockup-line:nth-child(3) { width: 90%; }
+        .mockup-line:nth-child(4) { width: 60%; }
+        .mockup-line:nth-child(5) { width: 75%; }
+        .mockup-line:nth-child(6) { width: 45%; }
+        .mockup-line:nth-child(7) { width: 80%; }
+        .mockup-line:nth-child(8) { width: 55%; }
+
+        @keyframes shimmer {
+            100% { left: 100%; }
+        }
+
+        .section {
+            position: relative;
+            z-index: 1;
+            padding: 100px 30px;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(79, 70, 229, 0.1);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: clamp(30px, 5vw, 48px);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(79, 70, 229, 0.4);
+            box-shadow: var(--glow-primary);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 22px;
+        }
+
+        .feature-icon.purple { background: rgba(79, 70, 229, 0.15); color: var(--primary-light); }
+        .feature-icon.cyan { background: rgba(6, 182, 212, 0.15); color: var(--accent-light); }
+        .feature-icon.green { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+        .feature-icon.amber { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .feature-icon.red { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+        .feature-icon.violet { background: rgba(139, 92, 246, 0.15); color: #A78BFA; }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .feature-tag {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 4px 12px;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--primary-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--accent), var(--success));
+        }
+
+        .step-item {
+            display: flex;
+            gap: 30px;
+            padding: 30px 0;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            min-width: 80px;
+            background: var(--bg-card);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-light);
+            z-index: 2;
+            box-shadow: var(--glow-primary);
+        }
+
+        .step-content {
+            flex: 1;
+            background: var(--gradient-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .step-highlight {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            padding: 6px 14px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+
+        .tech-card i {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .tech-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .tech-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .workflow-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .workflow-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--glow-primary);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+
+        .workflow-emoji {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .workflow-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .workflow-card p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1));
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .download-box {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 60px 40px;
+            background: var(--gradient-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .download-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 24px;
+            background: var(--gradient-primary);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 44px;
+            color: white;
+            box-shadow: var(--glow-primary);
+            animation: downloadPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes downloadPulse {
+            0%, 100% { box-shadow: var(--glow-primary); transform: scale(1); }
+            50% { box-shadow: 0 0 80px rgba(79, 70, 229, 0.5); transform: scale(1.05); }
+        }
+
+        .download-box h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .download-box p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .download-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .download-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .download-info-item i {
+            color: var(--success);
+        }
+
+        .req-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .req-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+        }
+
+        .req-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .req-card h4 i {
+            color: var(--primary-light);
+        }
+
+        .req-list {
+            list-style: none;
+        }
+
+        .req-list li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(75, 85, 99, 0.2);
+        }
+
+        .req-list li:last-child {
+            border-bottom: none;
+        }
+
+        .req-list li i {
+            color: var(--success);
+            font-size: 12px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--gradient-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--primary-light);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: var(--text-muted);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--primary-light);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .faq-answer-inner {
+            padding: 0 24px 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .footer {
+            position: relative;
+            z-index: 1;
+            padding: 60px 30px 30px;
+            border-top: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            max-width: 350px;
+        }
+
+        .footer-brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-col h5 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 4px 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            background: rgba(79, 70, 229, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-card);
+                border-bottom: 1px solid var(--border);
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero-stats {
+                gap: 30px;
+            }
+
+            .hero-stat-number {
+                font-size: 28px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container::before {
+                left: 25px;
+            }
+
+            .step-number {
+                width: 50px;
+                height: 50px;
+                min-width: 50px;
+                font-size: 20px;
+            }
+
+            .footer-top {
+                flex-direction: column;
+            }
+
+            .download-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--accent-light);
+            overflow-x: auto;
+            margin-top: 16px;
+        }
+
+        .code-block .comment { color: var(--text-muted); }
+        .code-block .keyword { color: #C084FC; }
+        .code-block .string { color: #34D399; }
+        .code-block .func { color: #60A5FA; }
+
+        .comparison-section {
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--gradient-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            padding: 18px 24px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 700;
+            background: rgba(79, 70, 229, 0.1);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table td {
+            padding: 16px 24px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(75, 85, 99, 0.15);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table .check {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .comparison-table .cross {
+            color: var(--danger);
+        }
+
+        .version-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .warning-box {
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            border-radius: 14px;
+            padding: 24px;
+            margin-top: 40px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .warning-box i {
+            color: var(--warning);
+            font-size: 24px;
+            margin-top: 2px;
+        }
+
+        .warning-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--warning);
+            margin-bottom: 6px;
+        }
+
+        .warning-box p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-animation">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+    <div class="grid-overlay"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon"><i class="fab fa-facebook-f"></i></div>
+                <div class="nav-logo-text">FB ID Creator <span>Pro</span></div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features" class="active">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#architecture">Tech Stack</a></li>
+                <li><a href="#workflow">Workflow</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="https://www.mediafire.com/file/w40xochssg90sui/FB_ID_Creator_Setup.exe/file" target="_blank" class="nav-cta" onclick="downloadTool(event)"><i class="fas fa-download"></i> Download</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                Version 4.0 — Now with Auto Page Creator
+            </div>
+            <h1 class="hero-title">
+                The Ultimate<br>
+                <span class="gradient-text">Facebook Automation</span><br>
+                Powerhouse
+            </h1>
+            <p class="hero-subtitle">
+                Automate Facebook ID creation with real browser automation. Proxy support, 2FA handling, OTP fetching, cookie extraction, and auto page creation — all in one powerful tool.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://www.mediafire.com/file/w40xochssg90sui/FB_ID_Creator_Setup.exe/file" target="_blank" class="btn btn-primary" onclick="downloadTool(event)">
+                    <i class="fas fa-rocket"></i> Download Now
+                </a>
+                <a href="#features" class="btn btn-outline">
+                    <i class="fas fa-eye"></i> Explore Features
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-number">15+</div>
+                    <div class="hero-stat-label">Core Features</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">100%</div>
+                    <div class="hero-stat-label">Browser Based</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">24/7</div>
+                    <div class="hero-stat-label">Automation Ready</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-number">∞</div>
+                    <div class="hero-stat-label">Profiles</div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-mockup">
+                    <div class="mockup-header">
+                        <div class="mockup-dots">
+                            <div class="mockup-dot"></div>
+                            <div class="mockup-dot"></div>
+                            <div class="mockup-dot"></div>
+                        </div>
+                        <div class="mockup-url">localhost:3000 — FB ID Creator Pro</div>
+                    </div>
+                    <div class="mockup-body">
+                        <div class="mockup-line"></div>
+                        <div class="mockup-line"></div>
+                        <div class="mockup-line"></div>
+                        <div class="mockup-line"></div>
+                        <div class="mockup-line"></div>
+                        <div class="mockup-line"></div>
+                        <div class="mockup-line"></div>
+                        <div class="mockup-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag"><i class="fas fa-bolt"></i> Features</span>
+                <h2 class="section-title">Everything You Need,<br><span class="gradient-text">All In One Tool</span></h2>
+                <p class="section-desc">A complete automation ecosystem built with Puppeteer, Express, and real browser rendering.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon purple"><i class="fas fa-user-plus"></i></div>
+                    <h3 class="feature-title">Bulk Profile Creation</h3>
+                    <p class="feature-desc">Upload CSV/TXT files with multiple profile data — names, emails, passwords, birthdays, gender. Each profile is processed sequentially with full automation through Facebook's signup flow.</p>
+                    <span class="feature-tag">Core Engine</span>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon cyan"><i class="fas fa-shield-halved"></i></div>
+                    <h3 class="feature-title">Proxy Support (HTTP/SOCKS5)</h3>
+                    <p class="feature-desc">Each profile runs through its own proxy. Supports HTTP, HTTPS, and SOCKS5 proxies with authentication (user:pass). Proxies are rotated per profile automatically for maximum stealth.</p>
+                    <span class="feature-tag">Security Layer</span>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon green"><i class="fas fa-key"></i></div>
+                    <h3 class="feature-title">2FA / TOTP Authentication</h3>
+                    <p class="feature-desc">Built-in TOTP secret key handling. After account creation, the tool automatically enables Two-Factor Authentication, captures the secret key, and stores it with each profile for future use.</p>
+                    <span class="feature-tag">Security</span>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon amber"><i class="fas fa-envelope-open-text"></i></div>
+                    <h3 class="feature-title">Auto OTP Fetching</h3>
+                    <p class="feature-desc">Connects to external email APIs (like mail.tm, guerrillamail, or custom endpoints) to automatically fetch OTP verification codes. No manual code entry needed — full end-to-end automation.</p>
+                    <span class="feature-tag">Automation</span>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon red"><i class="fas fa-cookie-bite"></i></div>
+                    <h3 class="feature-title">Cookie Extraction</h3>
+                    <p class="feature-desc">After successful account creation and 2FA setup, all browser cookies (including critical c_user, xs, datr tokens) are automatically extracted and saved for each profile for later session reuse.</p>
+                    <span class="feature-tag">Data Export</span>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon violet"><i class="fas fa-file-alt"></i></div>
+                    <h3 class="feature-title">Auto Page Creator</h3>
+                    <p class="feature-desc">Automatically creates Facebook Pages right after account setup. Supports 1-3 pages per profile, custom or random page names, and handles Facebook's wizard (Next → Next → Skip → Done) flawlessly.</p>
+                    <span class="feature-tag">New in v4.0</span>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon cyan"><i class="fas fa-eye-slash"></i></div>
+                    <h3 class="feature-title">Headless & Visible Mode</h3>
+                    <p class="feature-desc">Toggle between headless mode (invisible, faster execution) and visible browser mode (watch automation in real-time for debugging). Perfect for development and production environments.</p>
+                    <span class="feature-tag">Flexibility</span>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon green"><i class="fas fa-table"></i></div>
+                    <h3 class="feature-title">Results Dashboard</h3>
+                    <p class="feature-desc">Real-time progress tracking via a web dashboard. See each profile's status — processing, success, failed, with detailed error messages. Export results as CSV with all captured credentials.</p>
+                    <span class="feature-tag">UI/UX</span>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon purple"><i class="fas fa-random"></i></div>
+                    <h3 class="feature-title">Random Name Generator</h3>
+                    <p class="feature-desc">For auto page creation, enable random page name generation. The tool picks realistic, unique page names automatically — no need to manually name each page across hundreds of profiles.</p>
+                    <span class="feature-tag">Smart</span>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon amber"><i class="fas fa-sync-alt"></i></div>
+                    <h3 class="feature-title">Context Switching</h3>
+                    <p class="feature-desc">When creating multiple pages per profile, the tool intelligently switches context from Page Admin view back to Personal Profile before creating the next page — preventing Facebook errors.</p>
+                    <span class="feature-tag">Advanced</span>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon red"><i class="fas fa-exclamation-triangle"></i></div>
+                    <h3 class="feature-title">Error Recovery</h3>
+                    <p class="feature-desc">No fixed timeouts or blind waits. Everything uses intelligent polling with retries. If a page takes 30 seconds to load on slow internet — the tool waits. No skipped steps, ever.</p>
+                    <span class="feature-tag">Reliability</span>
+                </div>
+
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon violet"><i class="fas fa-download"></i></div>
+                    <h3 class="feature-title">CSV/TXT Export</h3>
+                    <p class="feature-desc">Export all created accounts with their emails, passwords, 2FA keys, cookies, page names, and status into structured CSV files. Ready for import into other tools or manual use.</p>
+                    <span class="feature-tag">Export</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how-it-works">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag"><i class="fas fa-cogs"></i> How It Works</span>
+                <h2 class="section-title">Simple Setup,<br><span class="gradient-text">Powerful Execution</span></h2>
+                <p class="section-desc">From installation to fully automated account creation in just a few steps.</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step-item animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Install & Setup</h3>
+                        <p class="step-desc">Download the tool, install Node.js dependencies with <code>npm install</code>. Place your <code>server.js</code> and <code>index.html</code> in the project folder. Run <code>node server.js</code> to start the automation server on port 3000.</p>
+                        <div class="code-block">
+                            <span class="comment">// Quick Start</span><br>
+                            <span class="keyword">npm</span> install<br>
+                            <span class="keyword">node</span> server.js<br>
+                            <span class="comment">// Open http://localhost:3000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Prepare Your Data</h3>
+                        <p class="step-desc">Create a CSV or TXT file with profile data: First Name, Last Name, Email, Password, Birthday (MM/DD/YYYY), Gender, Proxy (optional). Each line = one profile. The tool parses and validates everything automatically.</p>
+                        <div class="code-block">
+                            <span class="comment">// Example CSV format:</span><br>
+                            <span class="string">John,Doe,john@mail.tm,Pass123!,01/15/1995,Male,http://proxy:8080</span><br>
+                            <span class="string">Jane,Smith,jane@mail.tm,Pass456!,03/22/1990,Female,socks5://user:pass@proxy:1080</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Configure Settings</h3>
+                        <p class="step-desc">Open the web dashboard at localhost:3000. Upload your data file. Configure proxy settings, 2FA preferences, OTP fetcher endpoint, page creation settings (how many pages, custom or random names), and headless mode preference.</p>
+                        <span class="step-highlight"><i class="fas fa-check"></i> All settings persist between sessions</span>
+                    </div>
+                </div>
+
+                <div class="step-item animate-on-scroll">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Launch Automation</h3>
+                        <p class="step-desc">Click "Run Auto" and watch the magic happen. The tool opens a real Chrome browser (via Puppeteer), navigates to Facebook, fills in the signup form, handles email verification via OTP, enables 2FA, extracts cookies, and creates pages — all automatically.</p>
+                        <span class="step-highlight"><i class="fas fa-check"></i> Real-time status updates on dashboard</span>
+                    </div>
+                </div>
+
+                <div class="step-item animate-on-scroll">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Export & Use</h3>
+                        <p class="step-desc">Once processing completes, export all results. Each successful profile includes: Facebook UID, email, password, 2FA secret key, full cookie string, created page names, and status. Download as CSV for easy integration with other tools.</p>
+                        <span class="step-highlight"><i class="fas fa-check"></i> One-click CSV export</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section class="section" id="architecture">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag"><i class="fas fa-layer-group"></i> Architecture</span>
+                <h2 class="section-title">Built With <span class="gradient-text">Modern Tech</span></h2>
+                <p class="section-desc">Enterprise-grade technology stack for maximum reliability and performance.</p>
+            </div>
+
+            <div class="tech-grid animate-on-scroll">
+                <div class="tech-card">
+                    <i class="fab fa-node-js" style="color: #68A063;"></i>
+                    <h4>Node.js</h4>
+                    <p>Runtime Engine</p>
+                </div>
+                <div class="tech-card">
+                    <i class="fas fa-server" style="color: var(--primary-light);"></i>
+                    <h4>Express.js</h4>
+                    <p>Backend API Server</p>
+                </div>
+                <div class="tech-card">
+                    <i class="fas fa-robot" style="color: var(--accent);"></i>
+                    <h4>Puppeteer</h4>
+                    <p>Browser Automation</p>
+                </div>
+                <div class="tech-card">
+                    <i class="fab fa-chrome" style="color: #4285F4;"></i>
+                    <h4>Chromium</h4>
+                    <p>Real Browser Engine</p>
+                </div>
+                <div class="tech-card">
+                    <i class="fab fa-html5" style="color: #E34C26;"></i>
+                    <h4>HTML5 / CSS3</h4>
+                    <p>Dashboard Frontend</p>
+                </div>
+                <div class="tech-card">
+                    <i class="fab fa-js-square" style="color: #F7DF1E;"></i>
+                    <h4>Vanilla JS</h4>
+                    <p>Frontend Logic</p>
+                </div>
+            </div>
+
+            <div class="warning-box animate-on-scroll">
+                <i class="fas fa-microchip"></i>
+                <div>
+                    <h4>Architecture Overview</h4>
+                    <p>The tool runs as a local Node.js server. The frontend (index.html) communicates with the backend (server.js) via REST API endpoints. Puppeteer launches a real Chromium browser instance for each profile, executing automation steps with intelligent waits and retries instead of fixed timeouts. Proxy connections are established at the browser level using puppeteer-extra-plugin-proxy or launch arguments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section class="section" id="workflow">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag"><i class="fas fa-project-diagram"></i> Workflow</span>
+                <h2 class="section-title">Complete <span class="gradient-text">Automation Pipeline</span></h2>
+                <p class="section-desc">Every step of the automation flow, visualized.</p>
+            </div>
+
+            <div class="workflow-grid">
+                <div class="workflow-card animate-on-scroll">
+                    <div class="workflow-emoji">📂</div>
+                    <h4>Data Upload</h4>
+                    <p>Upload CSV/TXT with profile data. Names, emails, passwords, birthdays, proxies — all parsed automatically.</p>
+                </div>
+                <div class="workflow-card animate-on-scroll">
+                    <div class="workflow-emoji">🌐</div>
+                    <h4>Proxy Connection</h4>
+                    <p>Each profile connects through its assigned proxy. HTTP, HTTPS, SOCKS5 — all supported with authentication.</p>
+                </div>
+                <div class="workflow-card animate-on-scroll">
+                    <div class="workflow-emoji">📝</div>
+                    <h4>Signup Automation</h4>
+                    <p>Puppeteer fills Facebook's signup form — name, email, password, birthday, gender. Human-like typing delays.</p>
+                </div>
+                <div class="workflow-card animate-on-scroll">
+                    <div class="workflow-emoji">📧</div>
+                    <h4>OTP Verification</h4>
+                    <p>Auto-fetches verification OTP from email API. Enters the code and confirms the account automatically.</p>
+                </div>
+                <div class="workflow-card animate-on-scroll">
+                    <div class="workflow-emoji">🔐</div>
+                    <h4>2FA Setup</h4>
+                    <p>Navigates to security settings, enables TOTP-based 2FA, captures the secret key, and confirms with generated code.</p>
+                </div>
+                <div class="workflow-card animate-on-scroll">
+                    <div class="workflow-emoji">🍪</div>
+                    <h4>Cookie Extraction</h4>
+                    <p>Extracts all session cookies including c_user, xs, datr tokens for future session reuse and verification.</p>
+                </div>
+                <div class="workflow-card animate-on-scroll">
+                    <div class="workflow-emoji">📄</div>
+                    <h4>Page Creation</h4>
+                    <p>Auto-creates 1-3 Facebook Pages per profile. Custom names or random generation. Wizard completed automatically.</p>
+                </div>
+                <div class="workflow-card animate-on-scroll">
+                    <div class="workflow-emoji">💾</div>
+                    <h4>Export Results</h4>
+                    <p>Download all results — UIDs, credentials, 2FA keys, cookies, page names — as a clean CSV file.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag"><i class="fas fa-balance-scale"></i> Comparison</span>
+                <h2 class="section-title">Why <span class="gradient-text">FB ID Creator Pro?</span></h2>
+                <p class="section-desc">See how we compare to other methods.</p>
+            </div>
+
+            <div class="comparison-section animate-on-scroll">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>FB ID Creator Pro</th>
+                            <th>Manual Method</th>
+                            <th>Other Scripts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bulk Profile Creation</td>
+                            <td class="check"><i class="fas fa-check-circle"></i> Unlimited</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> One by one</td>
+                            <td class="check"><i class="fas fa-check-circle"></i> Limited</td>
+                        </tr>
+                        <tr>
+                            <td>Auto OTP Fetching</td>
+                            <td class="check"><i class="fas fa-check-circle"></i> Built-in</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> Manual</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> Rare</td>
+                        </tr>
+                        <tr>
+                            <td>2FA Setup</td>
+                            <td class="check"><i class="fas fa-check-circle"></i> Automatic</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> Manual</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> No</td>
+                        </tr>
+                        <tr>
+                            <td>Cookie Extraction</td>
+                            <td class="check"><i class="fas fa-check-circle"></i> Full cookies</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> Browser extension</td>
+                            <td class="check"><i class="fas fa-check-circle"></i> Partial</td>
+                        </tr>
+                        <tr>
+                            <td>Auto Page Creation</td>
+                            <td class="check"><i class="fas fa-check-circle"></i> 1-3 per profile</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> Manual</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> No</td>
+                        </tr>
+                        <tr>
+                            <td>Proxy Support</td>
+                            <td class="check"><i class="fas fa-check-circle"></i> HTTP/SOCKS5</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> VPN only</td>
+                            <td class="check"><i class="fas fa-check-circle"></i> Basic</td>
+                        </tr>
+                        <tr>
+                            <td>Smart Retries</td>
+                            <td class="check"><i class="fas fa-check-circle"></i> Polling-based</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> N/A</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> Fixed timeouts</td>
+                        </tr>
+                        <tr>
+                            <td>Web Dashboard</td>
+                            <td class="check"><i class="fas fa-check-circle"></i> Real-time</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> N/A</td>
+                            <td class="cross"><i class="fas fa-times-circle"></i> CLI only</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- REQUIREMENTS -->
+    <section class="section" id="requirements">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag"><i class="fas fa-clipboard-check"></i> Requirements</span>
+                <h2 class="section-title">System <span class="gradient-text">Requirements</span></h2>
+                <p class="section-desc">Make sure your system meets these requirements before installing.</p>
+            </div>
+
+            <div class="req-grid">
+                <div class="req-card animate-on-scroll">
+                    <h4><i class="fas fa-desktop"></i> System</h4>
+                    <ul class="req-list">
+                        <li><i class="fas fa-check"></i> Windows 10/11, macOS, or Linux</li>
+                        <li><i class="fas fa-check"></i> Minimum 4GB RAM (8GB recommended)</li>
+                        <li><i class="fas fa-check"></i> 500MB free disk space</li>
+                        <li><i class="fas fa-check"></i> Stable internet connection</li>
+                    </ul>
+                </div>
+                <div class="req-card animate-on-scroll">
+                    <h4><i class="fas fa-code"></i> Software</h4>
+                    <ul class="req-list">
+                        <li><i class="fas fa-check"></i> Node.js v16 or higher</li>
+                        <li><i class="fas fa-check"></i> npm (comes with Node.js)</li>
+                        <li><i class="fas fa-check"></i> Google Chrome / Chromium</li>
+                        <li><i class="fas fa-check"></i> Any modern web browser for dashboard</li>
+                    </ul>
+                </div>
+                <div class="req-card animate-on-scroll">
+                    <h4><i class="fas fa-puzzle-piece"></i> Dependencies</h4>
+                    <ul class="req-list">
+                        <li><i class="fas fa-check"></i> puppeteer / puppeteer-core</li>
+                        <li><i class="fas fa-check"></i> express</li>
+                        <li><i class="fas fa-check"></i> otpauth (for TOTP)</li>
+                        <li><i class="fas fa-check"></i> puppeteer-extra + stealth plugin</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-tag"><i class="fas fa-question-circle"></i> FAQ</span>
+                <h2 class="section-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        Is this tool detectable by Facebook?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">The tool uses puppeteer-extra with stealth plugin to minimize detection. Combined with proxy rotation, human-like typing delays, and real browser rendering, the detection risk is significantly reduced. However, no automation tool is 100% undetectable — use responsibly.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        How many profiles can I create at once?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">There's no hard limit in the tool itself. You can upload hundreds of profiles in your CSV. However, each profile is processed sequentially (one at a time) to maintain stability. Batch processing speed depends on your internet connection and proxy quality.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        Do I need proxies for every profile?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Proxies are optional but highly recommended. Creating multiple accounts from the same IP address increases the risk of detection and bans. For best results, use a unique proxy per profile. SOCKS5 residential proxies work best.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        What email services work with the OTP fetcher?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">The OTP fetcher is designed to work with API-based email services like mail.tm, guerrillamail, or any custom email API that provides inbox access. You configure the API endpoint in the settings. The tool polls the inbox for Facebook's verification code.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        Can I create pages without enabling 2FA first?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Page creation triggers automatically after 2FA setup completes. The flow is: Signup → OTP Verification → 2FA Setup → Page Creation. If 2FA is disabled in settings, pages will be created after OTP verification instead. Both flows are supported.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        What happens if my internet is slow?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Unlike other tools that use fixed setTimeout waits, FB ID Creator Pro uses intelligent polling with retries. Every action waits for the actual page element to appear, not a fixed timer. If a page takes 60 seconds to load, the tool waits 60 seconds. No skipped steps.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        Is the tool free to use?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">Yes, FB ID Creator Pro is completely free. Download the source code, install dependencies, and run it on your local machine. No license keys, no subscriptions, no hidden costs. Open source and community-driven.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section class="section download-section" id="download">
+        <div class="section-container">
+            <div class="download-box animate-on-scroll">
+                <div class="download-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <div class="version-badge" style="margin-bottom: 16px;">
+                    <i class="fas fa-tag"></i> v4.0.0 — Latest Stable
+                </div>
+                <h2>Download <span class="gradient-text">FB ID Creator Pro</span></h2>
+                <p>Get the complete tool with all features. Drop it in a folder, install dependencies, and you're ready to go.</p>
+
+                <a href="https://www.mediafire.com/file/w40xochssg90sui/FB_ID_Creator_Setup.exe/file" target="_blank" class="btn btn-download" id="downloadBtn" onclick="downloadTool(event)">
+                    <i class="fas fa-cloud-download-alt"></i> Download FB ID Creator Pro
+                </a>
+
+                <div class="download-info">
+                    <div class="download-info-item">
+                        <i class="fas fa-check-circle"></i> Setup .EXE Installer
+                    </div>
+                    <div class="download-info-item">
+                        <i class="fas fa-check-circle"></i> No license required
+                    </div>
+                    <div class="download-info-item">
+                        <i class="fas fa-check-circle"></i> Windows Compatible
+                    </div>
+                    <div class="download-info-item">
+                        <i class="fas fa-check-circle"></i> 100% Free
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box animate-on-scroll">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <h4>Disclaimer</h4>
+                    <p>This tool is provided for educational and research purposes only. Automating Facebook account creation may violate Facebook's Terms of Service. The developers are not responsible for any misuse, account bans, or legal consequences. Use at your own risk and responsibility.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-brand-logo">
+                        <div class="nav-logo-icon" style="width:36px;height:36px;font-size:16px;border-radius:10px;">
+                            <i class="fab fa-facebook-f"></i>
+                        </div>
+                        <div class="nav-logo-text" style="font-size:18px;">FB ID Creator <span>Pro</span></div>
+                    </div>
+                    <p>The most advanced Facebook automation tool. Built with love, powered by Puppeteer, and designed for professionals who demand reliability.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h5>Navigation</h5>
+                        <a href="#features">Features</a>
+                        <a href="#how-it-works">How It Works</a>
+                        <a href="#architecture">Tech Stack</a>
+                        <a href="#workflow">Workflow</a>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Resources</h5>
+                        <a href="#faq">FAQ</a>
+                        <a href="#requirements">Requirements</a>
+                        <a href="#download">Download</a>
+                    </div>
+                    <div class="footer-col">
+                        <h5>Legal</h5>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Use</a>
+                        <a href="#">Disclaimer</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 FB ID Creator Pro. All rights reserved. Built for educational purposes only.</p>
+                <div class="footer-socials">
+                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== NAVBAR SCROLL EFFECT =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // ===== MOBILE MENU =====
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+            });
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== FAQ ACCORDION =====
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // ===== ACTIVE NAV LINK ON SCROLL =====
+        const sections = document.querySelectorAll('.section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ===== DOWNLOAD FUNCTION =====
+        function downloadTool(event) {
+            if (event) event.preventDefault();
+
+            const mediafireUrl = 'https://www.mediafire.com/file/w40xochssg90sui/FB_ID_Creator_Setup.exe/file';
+
+            // MediaFire download page new tab me kholo
+            window.open(mediafireUrl, '_blank');
+
+            // Button feedback animation
+            const btn = document.getElementById('downloadBtn');
+            if (btn) {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> Redirecting to Download...';
+                btn.style.background = 'linear-gradient(135deg, #10B981, #059669)';
+
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                }, 3000);
+            }
+        }
+
+        // ===== SMOOTH SCROLL FOR ALL ANCHOR LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ===== TYPING ANIMATION FOR MOCKUP =====
+        const mockupUrl = document.querySelector('.mockup-url');
+        if (mockupUrl) {
+            const text = 'localhost:3000 — FB ID Creator Pro v4.0';
+            mockupUrl.textContent = '';
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    mockupUrl.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            setTimeout(typeWriter, 1500);
+        }
+
+        console.log('%c🔥 FB ID Creator Pro v4.0 — Landing Page Loaded', 'color: #4F46E5; font-size: 16px; font-weight: bold;');
+    </script>
+
+</body>
+</html>
